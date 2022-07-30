@@ -6,7 +6,9 @@
         <form method="POST">
             {% csrf_token %}
 
-            {{form.non_field_errors}}
+            {% if form.non_field_errors %}
+                <div class="alert alert-danger" role="alert">{{form.non_field_errors}}</div>
+            {% endif %}
             {% if form.errors %}
                 <div class="alert alert-danger" role="alert">
                     {% for field in form %}

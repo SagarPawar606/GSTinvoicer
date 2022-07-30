@@ -1,0 +1,159 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<button id="button" class="btn btn-success mx-5">Print/Save PDF</button>
+<div class="m-5 p-5 border bg-light" id="makepdf">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    
+
+    <div class="row">
+        <!-- User Detials -->
+        <div class="col-6">
+            <h3 class="blue-title">{{user.organizationldetials.org_name}}</h3>
+            <p>Address : {{user.organizationldetials.address}} <br> 
+                <i class="bi bi-telephone-fill"> - {{user.organizationldetials.contact_no}}</i> <br>
+                <i class="bi bi-envelope-fill"> - {{user.organizationldetials.email}}</i> <br>
+                <i class="bi bi-link-45deg"> - {{user.organizationldetials.website}}</i> <br>
+                GSTIN NO. : {{user.organizationldetials.gstin}}
+            </p>
+        </div>
+        <!-- Invoice Detials -->
+        <div class="col-4">
+            <h5>Invoice No : {{invoice_detail.invoice_no}}</h5>
+            <p>
+                Invoice Date : {{invoice_detail.invoice_date|date:"d/m/Y"}} <br>
+                Delivery Date : {{invoice_detail.delivery_date|date:"d/m/Y"}} <br>
+                Due Date : {{invoice_detail.due_date|date:"d/m/Y"}} <br>
+            </p>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- Recipient Detials -->
+    <h5>To : </h5>
+    <div class="row">
+        <div class="col">
+            <h4>{{invoice_detail.rcpt_name}}</h4>
+            <p>
+                GSTIN No. : {{invoice_detail.gstin}} <br>
+                <i class="bi bi-telephone-fill"> - {{invoice_detail.contact_number}} </i> <br>
+            </p>
+        </div>
+        <div class="col">
+            <h5>Billing Address :</h5>
+            <p>{{invoice_detail.b_address}}</p> 
+        </div>
+        <div class="col">
+            <h5>Shipping Address :</h5>
+            <p>{{invoice_detail.s_address}}</p> 
+        </div>
+    </div>
+    <hr>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col" class="col-4">Item Name</th>
+                <th scope="col">Hsn No</th>
+                <th scope="col">Unit Price</th>
+                <th scope="col">Units</th>
+                <th scope="col">Total Price</th>
+                <th scope="col">CGST %</th>
+                <th scope="col">SGST %</th>
+                <th scope="col">Final Amnt</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, value in items.items %}
+            <tr>
+                <th scope="row">{{key}}</th>
+                <td><strong>{{value.item_name}}</strong> <br> <small>{{value.description}}</small></td>
+                <td>{{value.hsn_no}}</td>
+                <td>{{value.price}}</td>
+                <td>{{value.quantity}}</td>
+                <td>{{value.gst_exclusive_price}}</td>
+                <td>{{value.cgst_amnt}} <br> ({{value.cgst}}%)</td>
+                <td>{{value.sgst_amnt}} <br> ({{value.sgst}}%)</td>
+                <td>{{value.gst_inclusive_price}}</td>
+            </tr>
+            {% endfor %}
+            <!-- Total pricing row -->
+            <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Total</td>
+                <td>{{pricing.before_tax_total}}</td>
+                <td></td>
+                <td></td>
+                <td>{{pricing.after_tax_total}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col">
+            <p>Amount in words : <b>{{pricing.total_in_words}} Rs. only</b></p>
+            <hr>
+            <p><b> Bank Detials </b><br>
+            <p>UPI No. : {{user.organizationldetials.upi}} <br>
+            Bank Name : {{user.organizationldetials.bank_name}} <br>
+            Branch Name : {{user.organizationldetials.branch_name}} <br>
+            Account No. {{user.organizationldetials.account_no}}<br>
+            IFSC code : {{user.organizationldetials.ifsc_code}}</p> <br>
+        </div>
+        <div class="col">
+            <div class="row">
+                <div class="col">Taxable Amount : </div>
+                <div class="col text-end me-4">{{pricing.before_tax_total}}</div>
+            </div>
+            <div class="row">
+                <div class="col"> Total tax amount : </div>
+                <div class="col text-end me-4">{{pricing.total_tax_amount}}</div>
+            </div>
+            <div class="row">
+                <div class="col"> Total amount : </div>
+                <div class="col text-end me-4">{{pricing.after_tax_total}}</div>
+            </div>
+            <div class="row">
+                <div class="col"> Discount : </div>
+                <div class="col text-end me-4">- {{pricing.discount}}</div>
+            </div>
+            <div class="row">
+                <div class="col"> Shipping : </div>
+                <div class="col text-end me-4">+ {{pricing.shipping}}</div>
+            </div>
+            <div class="row">
+                <div class="col"> Grand Total : </div>
+                <div class="col text-end me-4"><b>{{pricing.grand_total}}</b></div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+<script>
+    var button = document.getElementById("button");
+    var makepdf = document.getElementById("makepdf");
+  
+    button.addEventListener("click", function () {
+        var mywindow = window.open("", "PRINT", 
+                "height=500,width=800");
+  
+        mywindow.document.write(makepdf.innerHTML);
+  
+        mywindow.document.close();
+        mywindow.focus();
+  
+        mywindow.print();
+        // mywindow.close();
+  
+        return true;
+    });
+</script>
+
+{% endblock content %}

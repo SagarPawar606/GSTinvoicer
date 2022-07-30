@@ -136,7 +136,7 @@ def invoice(request):
                 'items':items_dict,
                 'pricing':pricing_dict,
             }
-            return render(request, 'base/pdf_invoice1.html', pdf_context_data)
+            return render(request, 'base/pdf_invoice.html', pdf_context_data)
     else:
         rcpt_form = RecipientDetailsForm()
         inv_detail_form = InvoiceDetialsForm()

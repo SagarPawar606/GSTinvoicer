@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7i6o4ru0k!)oe4e^2$s6c0%!nj)iqo$yxipm8)p*gdk@3of-wb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['django-gstinvoicer.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -125,7 +125,7 @@ USE_TZ = True
 #     os.path.join(BASE_DIR, "static"),
 # )
 
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+# STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 STATIC_URL = '/static/'
 
