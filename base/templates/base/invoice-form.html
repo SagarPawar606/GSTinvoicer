@@ -1,0 +1,187 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+{% load static %}
+
+<div class="container-md">
+<h3>Invoice Form</h3>
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="alert alert-danger" role="alert">{{form.non_field_errors}}</div>
+        {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for field in form %}
+                    {{field.errors}}
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        <!-- Recipient Form -->
+        <div class="mx-5 my-3 card bg-transparent">
+            <div class="m-2">
+                <div class="card-header">
+                    <h5>Detials of Recipient</h5>
+                </div>
+                <div>
+                    <label class="form-label mt-1">{{rcpt_form.rcpt_name.label}} *</label>
+                    {{rcpt_form.rcpt_name}}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label mt-1">{{rcpt_form.gstin.label}}</label>
+                            {{rcpt_form.gstin}}
+                        </div>
+                        <div class="col-md-6">
+                        <label class="form-label mt-1">{{rcpt_form.contact_number.label}}</label>
+                        {{rcpt_form.contact_number}}
+                        </div>    
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label class="form-label mt-1">Address</label>
+                            {{rcpt_form.b_address}}
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mt-2">
+                                <label class="form-label mt-1">{{rcpt_form.addr_chk_box}} {{rcpt_form.addr_chk_box.label}}</label>
+                            </div>
+                            <label class="row"></label>
+                            {{rcpt_form.s_address}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Invoice Details Form -->
+        <div class="mx-5 my-3  card bg-transparent">
+            <div class="m-2">
+                <div class="card-header">
+                   <h5>Invoice Details</h5>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label class="form-label mt-1">{{inv_det_form.invoice_no.label}} *</label>
+                        {{inv_det_form.invoice_no}}
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label mt-1">{{inv_det_form.invoice_date.label}} *</label>
+                        {{inv_det_form.invoice_date}}
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label mt-1">{{inv_det_form.delivery_date.label}}</label>
+                        {{inv_det_form.delivery_date}}
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label mt-1">{{inv_det_form.due_date.label}}</label>
+                        {{inv_det_form.due_date}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Item Details Form -->
+        {{ formset.management_form }}
+        <div class="mx-5 my-3  card bg-transparent">
+            <div class="m-2">
+                <div class="card-header">
+                    <h5>Item Details</h5>
+                </div>
+                {{ item_formset.management_form  }}
+                {% for item_form in item_formset %}
+                    <div class="card mx-2 my-2 form-row bg-transparent">
+                        <div class="card-header">
+                            <p>Item - <span class="item-counter">1</span></p>
+                        </div>
+
+                        {% if item_form.errors %}
+                            <div class="alert alert-error">
+                            <ul>
+                                {% for field in item_form %}
+                                {% if field.errors %}
+                                    {% for error in field.errors %}
+                                    <li>{{field.label}} {{ error|escape }}</a></li>
+                                    {% endfor %}
+                                {% endif %}
+                                {% endfor %}
+                            </ul>
+                            {% if item_form.non_field_errors %}
+                                {{ item_form.non_field_errors }}
+                            {% endif %}
+                            </div>
+                        {% endif %}
+
+                        <div class="m-2">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label class="form-label mt-1">{{item_form.item_name.label}} *</label>
+                                    {{item_form.item_name}}
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label mt-1">{{item_form.description.label}}</label>
+                                    {{item_form.description}}
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label mt-1">{{item_form.hsn_no.label}}</label>
+                                    {{item_form.hsn_no}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6">
+                                    <label class="form-label mt-1">{{item_form.price.label}} *</label>
+                                    {{item_form.price}}
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <label class="form-label mt-1">{{item_form.quantity.label}} *</label>
+                                    {{item_form.quantity}}
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <label class="form-label mt-1">{{item_form.cgst.label}} *</label>
+                                    {{item_form.cgst}}
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <label class="form-label mt-1">{{item_form.sgst.label}} *</label>
+                                    {{item_form.sgst}}
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button class="btn add-form-row my-2" type="button" style="display:none;"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn btn-info add-form-row my-2" type="button">Add Item</button>
+                    </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+
+        <!-- OTHER CHARGES FORM -->
+        <div class="mx-5 my-3  card bg-transparent">
+            <div class="m-2">
+                <div class="card-header">
+                   <h5>Other Charges</h5>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label class="form-label mt-1">{{extra_form.discount.label}}</label>
+                        {{extra_form.discount}}
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label mt-1">{{extra_form.shipping.label}}</label>
+                        {{extra_form.shipping}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary px-5 mb-5">Upload</button>
+        </div>
+    
+</form>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="{% static 'base/invoiceform.js' %}"></script>
+{% endblock content %}

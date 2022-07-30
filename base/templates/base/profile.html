@@ -1,0 +1,91 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container-md">
+        <form method="POST">
+            {% csrf_token %}
+
+            {{form.non_field_errors}}
+            {% if form.errors %}
+                <div class="alert alert-danger" role="alert">
+                    {% for field in form %}
+                        {{field.errors}}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            
+            <div class="mx-5 my-3 card">
+                <div class="m-2">
+                    <div class="card-header">
+                        <h5>Organization Details</h5>
+                    </div>
+
+                    <label class="form-label mt-1">{{form.org_name.label}}</label>
+                    {{form.org_name}}
+
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label mt-1">{{form.email.label}}</label>
+                            {{form.email}}
+                        </div>
+                        <div class="col">
+                            <label class="form-label mt-1">{{form.gstin.label}}</label>
+                            {{form.gstin}}
+                        </div>
+                    </div>
+
+                    <label class="form-label mt-1">{{form.address.label}}</label>
+                    {{form.address}}
+
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label mt-1">{{form.contact_no.label}}</label>
+                            {{form.contact_no}}
+                        </div>
+                        <div class="col">
+                            <label class="form-label mt-1">{{form.website.label}}</label>
+                            {{form.website}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mx-5 my-3 card">
+                <div class="m-2">
+                    <div class="card-header">
+                        <h5>Bank Detials</h5>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label mt-1">{{form.bank_name.label}}</label>
+                            {{form.bank_name}}
+                        </div>
+                        <div class="col">
+                            <label class="form-label mt-1">{{form.branch_name.label}}</label>
+                            {{form.branch_name}}
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <label class="form-label mt-1">{{form.account_no.label}}</label>
+                            {{form.account_no}}
+                        </div>
+                        <div class="col">
+                            <label class="form-label mt-1">{{form.ifsc_code.label}}</label>
+                            {{form.ifsc_code}}
+                        </div>
+                    </div>
+                    <label class="form-label mt-1">{{form.upi.label}}</label>
+                    {{form.upi}}
+
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary px-5 mb-5">Upload</button>
+            </div>
+        </form>
+</div>
+{% endblock %}

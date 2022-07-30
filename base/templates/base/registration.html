@@ -1,0 +1,42 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+    <h3>SignUp</h3>
+    <form method="POST">
+        {% csrf_token %}
+        <!-- Form Errors -->
+        <div class="alert alert-danger" role="alert">{{form.non_field_errors}}</div>
+        {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+                {% for field in form %}
+                    {{field.errors}}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="mx-5 my-3 card bg-transparent">
+            <div class="m-5">
+                <label class="form-label mt-1">{{form.username.label}}</label>
+                {{form.username}}
+
+                <div>
+                <label class="form-label mt-1">{{form.organization_name.label}}</label>
+                {{form.organization_name}}
+                </div>
+            
+                <label class="form-label mt-1">{{form.password1.label}}</label>
+                {{form.password1}}
+                    
+                <label class="form-label mt-1">{{form.password2.label}}</label>
+                {{form.password2}}
+                <p>Already have an account ? <a href="{% url 'login' %}">Login!</a> </p>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary px-5 mb-5">Signup</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+body{
+    background: rgb(241,241,241);
+background: linear-gradient(111deg, rgba(241,241,241,1) 0%, rgba(195,192,192,1) 40%);
+}
+
+a{
+    text-decoration: none;
+}
+
+p{
+    font-size: 16px;
+    font-weight:500
+}
+
+.navbar-brand{
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    font-size: 30px;
+}
+
+.nav-link{
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+    font-size: 20px
+}
