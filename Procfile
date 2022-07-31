@@ -1,0 +1,1 @@
+web: gunicorn invoice_generator.wsgi
