@@ -9,6 +9,5 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='base/logout.html'), name='logout'),
     path('profile/', views.orgnization_profile, name='profile'),
     path('invoice/', views.invoice, name='invoice-form'),
-    path('itemform/', views.item_test, name='item-form'),
     
 ]

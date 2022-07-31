@@ -1,4 +1,3 @@
-from urllib.robotparser import RequestRate
 from django.shortcuts import redirect, render
 from .forms import (UserRegistrationForm, 
                     OrganizationProfileForm, 
@@ -9,13 +8,7 @@ from .forms import (UserRegistrationForm,
 from .models import OrganizationlDetials
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.views import View
-from pprint import pprint
 from num2words import num2words
-from io import BytesIO
-from django.http import HttpResponse
-from django.template.loader import get_template
-from xhtml2pdf import pisa
 
 # Create your views here.
 def index(request):
@@ -151,19 +144,3 @@ def invoice(request):
                     }
         return render(request, 'base/invoice-form.html', context)
 
-
-def item_test(request):
-    if request.method == 'POST':
-        formset = ItemsFormset(request.POST)
-        if formset.is_valid():
-            print('formset is valid')
-            for form in formset:
-                if form.is_valid():
-                    print(['FORMS'])
-    else:
-        formset = ItemsFormset()
-    
-    context = {
-        'item_formset':formset
-    }
-    return render(request, 'base/itemform.html', context)
