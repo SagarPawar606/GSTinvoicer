@@ -7,6 +7,8 @@ from .forms import (UserRegistrationForm,
                     ItemsFormset)
 from .models import OrganizationlDetials
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from num2words import num2words
 
@@ -19,13 +21,16 @@ def register_user(request):
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            username = form.cleaned_data.get('username')
-            organization_name = form.cleaned_data.get('organization_name')
-            print(f'Registration Successfull for {username}')
-
+            username = form.cleaned_data['username']
+            organization_name = form.cleaned_data['organization_name']
             user = User.objects.get(username=username)
             org_obj = OrganizationlDetials.objects.create(user=user, org_name=organization_name)
             org_obj.save()
+            messages.success(request, f'Successfully created account for {username}')
+
+            #log in user & redirect to homepage
+            new_user = authenticate(username=username, password=form.cleaned_data['password1'])
+            login(request, new_user)
             return redirect('index')
     else:
         form = UserRegistrationForm()
@@ -39,11 +44,12 @@ def orgnization_profile(request):
         form = OrganizationProfileForm(request.POST, instance=request.user.organizationldetials)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Your profile has been saved successfully !')
             return redirect('index')
     else:
         form = OrganizationProfileForm(instance=request.user.organizationldetials)
     
-    return render(request, 'base/profile.html', {'form':form})
+    return render(request, 'base/profile.html', {'form':form, 'title':'Profile'})
 
 @login_required
 def invoice(request):

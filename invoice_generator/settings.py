@@ -20,12 +20,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7i6o4ru0k!)oe4e^2$s6c0%!nj)iqo$yxipm8)p*gdk@3of-wb'
+SECRET_KEY = str(os.environ.get('SECRET_KEY'))
+# SECRET_KEY = 'django-insecure-7i6o4ru0k!)oe4e^2$s6c0%!nj)iqo$yxipm8)p*gdk@3of-wb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django-gst.herokuapp.com','127.0.0.1:8000']
+ALLOWED_HOSTS = ['django-gst.herokuapp.com','127.0.0.1']
 
 
 # Application definition
@@ -33,13 +34,13 @@ ALLOWED_HOSTS = ['django-gst.herokuapp.com','127.0.0.1:8000']
 INSTALLED_APPS = [
 
     'base.apps.BaseConfig',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'crispy_forms',
 ]
 
 MIDDLEWARE = [

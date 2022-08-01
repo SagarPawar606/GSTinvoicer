@@ -1,42 +1,55 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-    {% if user.is_authenticated %}
-        <h5>Welcome, {{user.username}}</h5>
-        <a href="{% url  'invoice-form' %}">Create a invoice</a>
-    {% else %}
-        <h5>Welcome to GSTInvoicer</h5>
-        <P>Please <a href="{% url 'login' %}">LogIn</a>  to generate your Invoice</P>
-    {% endif %}
+    <div class="row">
+      <div class="col-md-6">
+        {% if user.is_authenticated %}
+            <h2>Welcome, {{user.username}}</h2>
+            <a href="{% url  'invoice-form' %}">Create a invoice</a>
+        {% else %}
+            <h2>Welcome to GSTInvoicer</h2>
+            <h5>Generate a GST invoice hassle-free that too for free.
+              No need to add your details, again and again, to create a new invoice every time like your GSTIN no, address, bank details, etc.
+              Create an account to generate hundreds of invoices for free.
+              <br>
+              <a href="{% url 'sign-up' %}">SignUp</a> or <a href="{% url 'login' %}">LogIn</a>
+            </h5>
+            
+        {% endif %}
+      </div>
+      <div class="col-md-6">
+        <img src="static\base\pngwing.png" alt="" id="index-png">
+      </div>
+    </div>
     
     <div class="container mt-5">
         <h4 class="mb-2">Why GSTInvoicer ?</h4>
-        <div class="row m-3 p-4 align-items-center">
-          <div class="col mx-3">
+        <div class="row mx-2 my-3 p-4 align-items-center feature">
+          <div class="col-md-5 mx-3">
             <h3>Zero Cost</h3>
           </div>
-          <div class="col mx-3">
+          <div class="col-md-5 mx-3">
             <p>Through this online invoice generator, you can create thousands of invoices at zero cost.
                 It means that GST invoice generator creates invoice online for free.
                 It also saves your cost which is related to Bill book, 
                 paying separately to a person for creating GST invoices, etc.</p>
           </div>
         </div>
-        <div class="row m-3 p-4 align-items-center">
-            <div class="col mx-3">
+        <div class="row mx-2 my-3 p-4 align-items-center feature">
+            <div class="col-md-5 mx-3">
               <p>Through this online invoice generator, 
                 you can either download a PDF version of your invoice or else you can 
                 directly print the invoice with a single click.</p>
             </div>
-            <div class="col mx-3">
+            <div class="col-md-5 mx-3">
               <h3>Print with single click</h3>
             </div>
           </div>
-          <div class="row m-3 p-4 align-items-center">
-            <div class="col mx-3">
+          <div class="row mx-2 my-3 p-4 align-items-center feature">
+            <div class="col-md-5 mx-3">
               <h3>Standard Format</h3>
             </div>
-            <div class="col mx-3">
+            <div class="col-md-5 mx-3">
               <p>you will get a standard format of your GST tax invoice template for your 
                 all supplies to the recipient. All fields of this online invoice generator tool have 
                 been prepared by taking into mind a standardized format of an optimal GST invoice</p>

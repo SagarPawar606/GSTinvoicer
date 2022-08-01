@@ -4,6 +4,11 @@ body{
     color: white;
 }
 
+.feature{
+    background: rgb(2,0,36);
+    background: linear-gradient(270deg, rgba(2,0,36,1) 0%, rgba(5,87,172,1) 60%, rgba(0,212,255,1) 100%, rgba(241,241,241,1) 100%);
+}
+
 a{
     text-decoration: none;
 }
@@ -14,13 +19,22 @@ p{
 }
 
 .navbar-brand{
-    color: yellow;
-    text-shadow: 2px 2px 4px white;
+    color: #FF7069;
+    /* text-shadow: 2px 2px 4px white; */
     font-size: 30px;
 }
 
 .nav-link{
-    color: yellow;
-    text-shadow: 2px 2px 4px white;
+    color: #FF7069;
+    /* text-shadow: 2px 2px 4px white; */
     font-size: 20px
 }
+.nav-link:hover,  .navbar-brand:hover{
+    color: white;
+  }
+
+#index-png{
+    max-width: 55%;
+    height: auto;
+}
+
