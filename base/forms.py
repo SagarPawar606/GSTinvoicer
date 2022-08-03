@@ -92,6 +92,13 @@ class ExtraChargesForm(forms.Form):
     shipping = forms.DecimalField(initial=0, min_value=0, decimal_places=2, label='Shipping Charges', required=False,
             widget=forms.NumberInput(attrs={'class':'form-control'}))
     
+class MailForm(forms.Form):
+    email_from = forms.EmailField(required=True, label='Email Address',
+        widget=forms.EmailInput(attrs={'class':'form-control', 'placeholder':'Your email address'}))
+    subject = forms.CharField(label='Subject',
+        widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Subject'})) 
+    message = forms.CharField(required=True, label='Message',
+        widget=forms.Textarea(attrs={'class':'form-control', 'placeholder':'Message'})) 
 
 ItemsFormset = formset_factory(ItemDetialsForm, extra=1)
 

@@ -2,10 +2,10 @@
 {% load static %}
 {% block content %}
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6 align-self-center">
         {% if user.is_authenticated %}
             <h2>Welcome, {{user.username}}</h2>
-            <a href="{% url  'invoice-form' %}">Create a invoice</a>
+            <a href="{% url  'invoice-form' %}" class="btn btn-primary">Create a invoice</a>
         {% else %}
             <h2>Welcome to GSTInvoicer</h2>
             <h5>Generate a GST invoice hassle-free that too for free.
@@ -17,7 +17,7 @@
             
         {% endif %}
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 align-self-center">
         <img src="static\base\pngwing.png" alt="" id="index-png">
       </div>
     </div>

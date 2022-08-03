@@ -1,16 +1,17 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, HttpResponse
 from .forms import (UserRegistrationForm, 
                     OrganizationProfileForm, 
                     RecipientDetailsForm,
                     InvoiceDetialsForm,
                     ExtraChargesForm,
-                    ItemsFormset)
+                    ItemsFormset, MailForm)
 from .models import OrganizationlDetials
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from num2words import num2words
+from django.core.mail import send_mail
 
 # Create your views here.
 def index(request):
@@ -150,3 +151,26 @@ def invoice(request):
                     }
         return render(request, 'base/invoice-form.html', context)
 
+
+def sendmail(request):
+    if request.method == 'POST':
+        form = MailForm(request.POST)
+        if form.is_valid():
+            mail_from = form.cleaned_data['email_from']
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            try:
+                send_mail(
+                    subject = subject,
+                    message = f'From : {mail_from} \n {message}',
+                    from_email = mail_from,
+                    recipient_list = ['sagarpawar606@gmail.com',],
+                    fail_silently = False,
+                )
+                messages.success(request, 'Mail sent successfully !')
+            except Exception as e:
+                messages.error(request, 'Something went wrong ! Try again later')
+                print(f'[MAIL_ERROR] : {e}')
+    else:
+        form = MailForm()
+    return render(request, 'base/mail.html', {'form':form, 'title':'Send Message'})
