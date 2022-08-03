@@ -161,7 +161,7 @@ def sendmail(request):
             message = form.cleaned_data['message']
             try:
                 send_mail(
-                    subject = subject,
+                    subject = f'[GSTinvoicer] - {subject}',
                     message = f'From : {mail_from} \n {message}',
                     from_email = mail_from,
                     recipient_list = ['sagarpawar606@gmail.com',],
