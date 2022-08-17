@@ -4,6 +4,7 @@ Deployed Link - [GSTinvoicer](https://django-gst.herokuapp.com/)
 
 ## Features
 * No need to calculate GST manually
+* Add/Remove invoice items dynamically
 * Saves the user data such as company detail, bank detail, GSTIN no etc. so no need to refill these fields 
    repeatedly for each invoice
 * Standard format followed for GST invoice template
