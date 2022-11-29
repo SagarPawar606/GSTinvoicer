@@ -52,6 +52,7 @@ def orgnization_profile(request):
     
     return render(request, 'base/profile.html', {'form':form, 'title':'Profile'})
 
+
 @login_required
 def invoice(request):
     if request.method == 'POST':
@@ -121,7 +122,7 @@ def invoice(request):
             pricing_dict['shipping'] = shipping
 
             discounted_total = after_tax_total - discount
-            grand_total = discounted_total + shipping       
+            grand_total = round(discounted_total + shipping)
             
             pricing_dict['before_tax_total'] = before_tax_total
             pricing_dict['after_tax_total'] = after_tax_total
@@ -136,6 +137,7 @@ def invoice(request):
                 'items':items_dict,
                 'pricing':pricing_dict,
             }
+
             return render(request, 'base/pdf_invoice.html', pdf_context_data)
     else:
         rcpt_form = RecipientDetailsForm()

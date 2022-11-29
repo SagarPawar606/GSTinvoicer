@@ -4,8 +4,6 @@ body {
     color: white;
 }
 
-
-
 .feature {
     background: rgb(2, 0, 36);
     background: linear-gradient(270deg, rgba(2, 0, 36, 1) 0%, rgba(5, 87, 172, 1) 60%, rgba(0, 212, 255, 1) 100%, rgba(241, 241, 241, 1) 100%);
@@ -22,14 +20,14 @@ p {
 
 .navbar-brand {
     color: #FF7069;
-    /* text-shadow: 2px 2px 4px white; */
     font-size: 30px;
+    font-weight: 500;
 }
 
 .nav-link {
-    color: #FF7069;
-    /* text-shadow: 2px 2px 4px white; */
-    font-size: 20px
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
 }
 
 .nav-link:hover,
@@ -43,7 +41,10 @@ p {
 }
 footer {
     background-color: black;
-    padding: 50px;
+    padding: 40px;
+    width: 100%;
+    /* position: relative; */
+    margin-top: 500px;
 }
 .footer-element{
     color: white;
