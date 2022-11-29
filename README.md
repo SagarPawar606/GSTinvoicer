@@ -1,6 +1,6 @@
 # GSTinvoicer
 GSTinvoicer is app developed using Python, Django framework and deployed on heroku.
-Deployed Link - [GSTinvoicer](https://django-gst.herokuapp.com/)
+Deployed Link - [GSTinvoicer](https://gstinvoicer-production.up.railway.app/)
 
 ## Features
 * No need to calculate GST manually
