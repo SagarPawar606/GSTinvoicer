@@ -1,0 +1,52 @@
+body {
+    background: rgb(241, 241, 241);
+    background-image: linear-gradient(90deg, #020024 0%, #090979 35%, #00d4ff 100%);
+    color: white;
+}
+
+.feature {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(270deg, rgba(2, 0, 36, 1) 0%, rgba(5, 87, 172, 1) 60%, rgba(0, 212, 255, 1) 100%, rgba(241, 241, 241, 1) 100%);
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    font-size: 16px;
+    font-weight: 500
+}
+
+.navbar-brand {
+    color: #FF7069;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.nav-link {
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.nav-link:hover,
+.navbar-brand:hover {
+    color: white;
+}
+
+#index-png {
+    max-width: 55%;
+    height: auto;
+}
+footer {
+    background-color: black;
+    padding: 40px;
+    width: 100%;
+    /* position: relative; */
+    margin-top: 500px;
+}
+.footer-element{
+    color: white;
+    padding: 10px;
+}
