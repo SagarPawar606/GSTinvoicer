@@ -1,5 +1,5 @@
 # GSTinvoicer
-GSTinvoicer is app developed using Python, Django framework and deployed on heroku.
+GSTinvoicer is app developed using Python, Django framework and deployed on railway platform.
 Deployed Link - [GSTinvoicer](https://gstinvoicer-production.up.railway.app/)
 
 ## Features
@@ -11,5 +11,17 @@ Deployed Link - [GSTinvoicer](https://gstinvoicer-production.up.railway.app/)
 * Print/Save with a single click
 * Totally free of cost invoice generation
 
+## Tech
 
+- [Python],  Javascript, [Django], [Beautifulsoup], HTML & CSS, [bootstrap]
+
+
+
+
+   
+
+   [Python]: <https://www.python.org/>
+   [Django]: <https://www.djangoproject.com/>
+   [Beautifulsoup]: <https://pypi.org/project/beautifulsoup4/>
+   [bootstrap]: <https://getbootstrap.com/>
 
