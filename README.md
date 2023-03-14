@@ -13,15 +13,11 @@ Deployed Link - [GSTinvoicer](https://gstinvoicer-production.up.railway.app/)
 
 ## Tech
 
-- [Python],  Javascript, [Django], [Beautifulsoup], HTML & CSS, [bootstrap]
-
-
-
+- [Python],  Javascript, [Django], HTML & CSS, [bootstrap]
 
    
 
    [Python]: <https://www.python.org/>
    [Django]: <https://www.djangoproject.com/>
-   [Beautifulsoup]: <https://pypi.org/project/beautifulsoup4/>
    [bootstrap]: <https://getbootstrap.com/>
 
