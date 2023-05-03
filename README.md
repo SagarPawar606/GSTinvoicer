@@ -9,7 +9,7 @@ Deployed Link - [GSTinvoicer](https://gstinvoicer-production.up.railway.app/)
    repeatedly for each invoice
 * Standard format followed for GST invoice template
 * Print/Save with a single click
-* Totally free of cost invoice generation
+* Totally free of cost invoice generation.
 
 ## Tech
 
